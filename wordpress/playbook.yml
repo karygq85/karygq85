@@ -2,7 +2,7 @@
 - hosts: frontend
   become: true
   vars_files:
-    - wordpress/vars/default.yml
+    - vars/vars.yml
 
   tasks:
     - name: Install prerequisites
