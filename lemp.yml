@@ -2,7 +2,7 @@
 - hosts: all
   become: true
   vars_files:
-   - vars/default.yml
+   - vars.yml
 
  tasks:
    - name: Install Prerequisites
@@ -18,12 +18,12 @@
    - name: Sets Nginx conf file
      template:
        src: "files/nginx.conf.j2"
-       dest: "/etc/nginx/sites-available/80"
+       dest: "/etc/nginx/sites-available/{{ http_conf }}"
 
    - name: Enables new site
      file:
-       src: "/etc/nginx/sites-available/80"
-       dest: "/etc/nginx/sites-enabled/80"
+       src: "/etc/nginx/sites-available/{{ http_conf }}"
+       dest: "/etc/nginx/sites-enabled/{{ http_conf }}"
        state: link
      notify: Reload Nginx
 
@@ -38,7 +38,7 @@
    - name: Sets the root password
      mysql_user:
        name: root
-       password: Passw0rd
+       password: "{{ mysql_root_password }}"
        login_unix_socket: /var/run/mysqld/mysqld.sock
 
    - name: Removes all anonymous user accounts
@@ -47,21 +47,21 @@
        host_all: yes
        state: absent
        login_user: root
-       login_password: Passw0rd
+       login_password: "{{ mysql_root_password }}"
 
    - name: Removes the MySQL test database
      mysql_db:
        name: test
        state: absent
        login_user: root
-       login_password: Passw0rd
+       login_password: "{{ mysql_root_password }}"
 
 # UFW Configuration
 
    - name: "UFW - Allow HTTP on port {{ http_port }}"
      ufw:
        rule: allow
-       port: 80
+       port: "{{ http_port }}"
        proto: tcp
 
 # Sets Up PHP Info Page
