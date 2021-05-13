@@ -73,7 +73,7 @@
 
 # Handlers
 
- handlers:
+  handlers:
    - name: Reload Nginx
      service:
        name: nginx
