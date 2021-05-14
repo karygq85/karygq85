@@ -10,14 +10,23 @@
       tags: [ system ]
 
   # MySQL Configuration
-    - name: Set the root password
+    #- name: Set the root password
+     # mysql_user:
+      #  name: root
+       # password: "{{ mysql_root_password }}"
+        #login_unix_socket: /var/run/mysqld/mysqld.sock
+        #priv: "*.*:ALL,GRANT"
+        #host: localhost
+      #tags: [ mysql, mysql-root ]
+    
+    - name: Update mysql root password for all root accounts from local servers.
       mysql_user:
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
         name: root
+        host: localhost
         password: "{{ mysql_root_password }}"
-        login_unix_socket: /var/run/mysqld/mysqld.sock
         priv: "*.*:ALL,GRANT"
-        #host: "{{ item }}"
-      tags: [ mysql, mysql-root ]
 
     - name: Remove all anonymous user accounts
       mysql_user:
