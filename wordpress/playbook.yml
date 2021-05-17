@@ -85,7 +85,7 @@
 
     - name: Set ownership
       file:
-        path: "/var/www/{{ http_host }}"
+        path: "/var/www/html"
         state: directory
         recurse: yes
         owner: www-data
@@ -93,23 +93,23 @@
       tags: [ wordpress ]
     
     #- name: Set the correct permissions on Wordpress directories
-     # command: find /var/www/{{ http_host }}/wordpress/ -type d -exec chmod 755 {} \;
+     # command: find /var/www/html/wordpress/ -type d -exec chmod 755 {} \;
 
     - name: Set the correct permissions on Wordpress directories
       command: find /var/www/html/wordpress/ -type d -exec chmod 755 {} \;
 
     #- name: Set permissions for directories
-    #  shell: "/usr/bin/find /var/www/{{ http_host }}/wordpress/ -type d -exec chmod 750 {} \\;"
+    #  shell: "/usr/bin/find /var/www/html/wordpress/ -type d -exec chmod 750 {} \\;"
     #  tags: [ wordpress ]
 
     #- name: Set permissions for files
-    #  shell: "/usr/bin/find /var/www/{{ http_host }}/wordpress/ -type f -exec chmod 640 {} \\;"
+    #  shell: "/usr/bin/find /var/www/html/wordpress/ -type f -exec chmod 640 {} \\;"
     #  tags: [ wordpress ]
 
     - name: Set up wp-config
       template:
         src: "files/vhost.conf.j2"
-        dest: "/var/www/{{ http_host }}/wp-config.php"
+        dest: "/var/www/html/wp-config.php"
       tags: [ wordpress ]
 
   handlers:
