@@ -71,6 +71,9 @@
         proto: tcp
       tags: [ system ]
 
+    - name: Restart Nginx Service
+      command: nginx -s reload
+
   # WordPress Configuration
     - name: Download and unpack latest WordPress
       unarchive:
