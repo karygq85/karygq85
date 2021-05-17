@@ -75,9 +75,9 @@
     - name: Download and unpack latest WordPress
       unarchive:
         src: https://wordpress.org/latest.tar.gz
-        dest: "/var/www/{{ http_host }}"
+        dest: "/var/www/html"
         remote_src: yes
-        creates: "/var/www/{{ http_host }}/wordpress"
+        creates: "/var/www/html/wordpress"
       tags: [ wordpress ]
 
     - name: Set ownership
