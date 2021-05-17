@@ -75,14 +75,14 @@
     - name: Download and unpack latest WordPress
       unarchive:
         src: https://wordpress.org/latest.tar.gz
-        dest: "/var/www/html"
+        dest: "/var/www/{{ http_host }}"
         remote_src: yes
-        creates: "/var/www/html/wordpress"
+        creates: "/var/www/{{ http_host }}/wordpress"
       tags: [ wordpress ]
 
     - name: Set ownership
       file:
-        path: "/var/www/html"
+        path: "/var/www/{{ http_host }}"
         state: directory
         recurse: yes
         owner: www-data
@@ -90,17 +90,17 @@
       tags: [ wordpress ]
 
     - name: Set permissions for directories
-      shell: "/usr/bin/find /var/www/html/wordpress/ -type d -exec chmod 750 {} \\;"
+      shell: "/usr/bin/find /var/www/{{ http_host }}/wordpress/ -type d -exec chmod 750 {} \\;"
       tags: [ wordpress ]
 
     - name: Set permissions for files
-      shell: "/usr/bin/find /var/www/html/wordpress/ -type f -exec chmod 640 {} \\;"
+      shell: "/usr/bin/find /var/www/{{ http_host }}/wordpress/ -type f -exec chmod 640 {} \\;"
       tags: [ wordpress ]
 
     - name: Set up wp-config
       template:
         src: "files/wp-config.php.j2"
-        dest: "/var/www/html/wordpress/wp-config.php"
+        dest: "/var/www/{{ http_host }}/wp-config.php"
       tags: [ wordpress ]
 
   handlers:
