@@ -102,7 +102,7 @@
 
     - name: Set up wp-config
       template:
-        src: "files/wp-config.php.j2"
+        src: "files/vhost.conf.j2"
         dest: "/var/www/{{ http_host }}/wp-config.php"
       tags: [ wordpress ]
 
