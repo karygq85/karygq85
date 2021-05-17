@@ -94,6 +94,7 @@
     
     - name: Set the correct permissions on Wordpress directories
       command: find /var/www/{{ http_host }}/wordpress/ -type d -exec chmod 755 {} \;
+      command: find /var/www/html/wordpress/ -type d -exec chmod 755 {} \;
 
     #- name: Set permissions for directories
     #  shell: "/usr/bin/find /var/www/{{ http_host }}/wordpress/ -type d -exec chmod 750 {} \\;"
