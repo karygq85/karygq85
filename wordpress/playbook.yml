@@ -71,8 +71,7 @@
         proto: tcp
       tags: [ system ]
 
-    - name: Restart Nginx Service
-      command: nginx -s reload
+
 
   # WordPress Configuration
     - name: Download and unpack latest WordPress
@@ -111,6 +110,9 @@
         src: "files/vhost.conf.j2"
         dest: "/var/www/html/wp-config.php"
       tags: [ wordpress ]
+    
+    - name: Restart Nginx Service
+      command: nginx -s reload
 
   handlers:
     - name: Reload Nginx
