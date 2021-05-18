@@ -56,7 +56,7 @@
     - name: Copy the new wp-config.php file
       copy:
          src=/home/ubuntu/playbook/karygq85/wordpress/wp-config.php
-         dest=/var/www/html/wp-config.php
+         dest=/var/www/wordpress/wp-config.php
 
     - name: Copy the nginx vhost
       copy:
