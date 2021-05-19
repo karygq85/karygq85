@@ -1,17 +1,17 @@
 [hosts]
 ec2-13-58-195-142.us-east-2.compute.amazonaws.com
 ec2-3-17-147-150.us-east-2.compute.amazonaws.com
-ec2-3-15-30-48.us-east-2.compute.amazonaws.com
-ec2-18-116-73-246.us-east-2.compute.amazonaws.com
-ec2-3-17-142-64.us-east-2.compute.amazonaws.com
+ec2-18-191-18-120.us-east-2.compute.amazonaws.com
+ec2-3-131-162-30.us-east-2.compute.amazonaws.com
+ec2-18-188-31-17.us-east-2.compute.amazonaws.com
 
 [control]
 ec2-13-58-195-142.us-east-2.compute.amazonaws.com
 
 [backend]
 ec2-3-17-147-150.us-east-2.compute.amazonaws.com
-ec2-3-15-30-48.us-east-2.compute.amazonaws.com
+ec2-18-191-18-120.us-east-2.compute.amazonaws.com
 
 [frontend]
-ec2-18-116-73-246.us-east-2.compute.amazonaws.com
-ec2-3-17-142-64.us-east-2.compute.amazonaws.com
+ec2-3-131-162-30.us-east-2.compute.amazonaws.com
+ec2-18-188-31-17.us-east-2.compute.amazonaws.com
