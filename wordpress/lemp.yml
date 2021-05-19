@@ -24,14 +24,14 @@
     - name: Download and unpack latest WordPress
       unarchive:
         src: https://wordpress.org/latest.tar.gz
-        dest: "/var/www/html"
+        dest: "/var/www/wordpress"
         remote_src: yes
-        creates: "/var/www/html/wordpress"
+        creates: "/var/www/wordpress"
       tags: [ wordpress ]
 
     - name: Set ownership
       file:
-        path: "/var/www/html"
+        path: "/var/www/wordpress"
         state: directory
         recurse: yes
         owner: www-data
@@ -42,7 +42,7 @@
      # command: find /var/www/html/wordpress/ -type d -exec chmod 755 {} \;
 
     - name: Set the correct permissions on Wordpress directories
-      command: find /var/www/html/wordpress/ -type d -exec chmod 755 {} \;
+      command: find /var/www/wordpress/ -type d -exec chmod 755 {} \;
 
     #- name: Set permissions for directories
     #  shell: "/usr/bin/find /var/www/html/wordpress/ -type d -exec chmod 750 {} \\;"
@@ -55,7 +55,7 @@
     - name: Set up wp-config
       template:
         src: "files/vhost.conf.j2"
-        dest: "/var/www/html/wp-config.php"
+        dest: "/var/www/wordpress/wp-config.php"
       tags: [ wordpress ]
     
     - name: Restart Nginx Service
