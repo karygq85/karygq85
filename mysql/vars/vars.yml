@@ -7,7 +7,7 @@ mysql_root_password: "Passw0rd"
 mysql_db: "wordpress"
 mysql_user: "wordpress"
 mysql_password: "Passw0rd"
-dbhosts: 18.191.18.120
+dbhosts: 18.189.32.120
 #HTTP Settings
 http_host: "localhost"
 http_conf: "localhost.conf"
