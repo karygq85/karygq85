@@ -9,15 +9,15 @@
       apt: name=aptitude update_cache=yes state=latest force_apt_get=yes
       tags: [ system ]
 
-  # MySQL Configuration
-    #- name: Set the root password
-     # mysql_user:
-      #  name: root
-       # password: "{{ mysql_root_password }}"
-        #login_unix_socket: /var/run/mysqld/mysqld.sock
-        #priv: "*.*:ALL,GRANT"
-        #host: localhost
-      #tags: [ mysql, mysql-root ]
+   MySQL Configuration
+    - name: Set the root password
+      mysql_user:
+        name: root
+        password: "{{ mysql_root_password }}"
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        priv: "*.*:ALL,GRANT"
+        host: localhost
+      tags: [ mysql, mysql-root ]
     
     - name: Update mysql root password for all root accounts from local servers.
       mysql_user:
@@ -47,9 +47,9 @@
 
     - name: Creates database for WordPress
       mysql_db:
-        name: "{{ mysql_db }}"
+        name: "{{ wordpress }}"
         state: present
-        login_user: root
+        login_user: wordpress
         login_password: "{{ mysql_root_password }}"
       tags: [ mysql ]
 
@@ -59,14 +59,6 @@
         password: "{{ mysql_password }}"
         priv: "{{ mysql_db }}.*:ALL"
         state: present
-        login_user: root
+        login_user: wordpress
         login_password: "{{ mysql_root_password }}"
       tags: [ mysql ]
-
-  # UFW Configuration
-    - name: "UFW - Allow HTTP on port {{ http_port }}"
-      ufw:
-        rule: allow
-        port: "{{ http_port }}"
-        proto: tcp
-      tags: [ system ]
