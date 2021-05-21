@@ -1,0 +1,2 @@
+#Ignore PEM files.
+*.pem
